@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpticalReaderLib</name>
+    </assembly>
+    <members>
+        <member name="T:OpticalReaderLib.BasicEnhancer">
+            <summary>
+            Basic generic enhancer implementation.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.IEnhancer">
+            <summary>
+            Frame enhancer implementation interface.
+            
+            Enhancers improve the image quality of frames, attempting to make it easier
+            for decoding algorithms to do their work.
+            
+            Enhancers are not allowed to modify frame dimensions.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.IEnhancer.EnhanceAsync(OpticalReaderLib.Frame)">
+            <summary>
+            Enhances the frame for easier decoding.
+            </summary>
+            <param name="frame">Frame to enhance.</param>
+            <returns>Enhancing result.</returns>
+        </member>
+        <member name="T:OpticalReaderLib.BasicNormalizer">
+            <summary>
+            Basic generic normalizer implementation.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.INormalizer">
+            <summary>
+            Frame normalizer implementation interface.
+            
+            Normalizers handle cropping and rotating requested regions from larger frames.
+            Normalizers are meant to be used before enhancers and decoders.
+            
+            Normalizers may modify dimensions of frames, but if they do, they must provide
+            a point translation function in the result so that possible interest points
+            can be mapped back to the original frame.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.INormalizer.NormalizeAsync(OpticalReaderLib.Frame,Windows.Foundation.Rect,System.Double)">
+            <summary>
+            Normalizes the frame, cropping it to the requested area and rotating the result.
+            </summary>
+            <param name="frame">Frame to normalize.</param>
+            <param name="area">Frame area to crop to.</param>
+            <param name="rotation">Degrees to clockwise rotate the selected area.</param>
+            <returns>Normalization result.</returns>
+        </member>
+        <member name="T:OpticalReaderLib.FrameFormat">
+            <summary>
+            Frame data buffer format.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.FrameFormat.Unknown">
+            <summary>
+            Unknown format or format not set.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.FrameFormat.Bgra32">
+            <summary>
+            32-bit blue-green-red-alpha format.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.FrameFormat.Gray8">
+            <summary>
+            8-bit gray format.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.Frame">
+            <summary>
+            Image frame.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.Frame.Buffer">
+            <summary>
+            Frame data buffer consisting the image data.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.Frame.Pitch">
+            <summary>
+            Amount of bytes in buffer that represent one horizontal scan line in the frame.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.Frame.Format">
+            <summary>
+            Frame data buffer format.
+            </summary>
+        </member>
+        <member name="F:OpticalReaderLib.Frame.Dimensions">
+            <summary>
+            Frame pixel dimensions.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.DecodeResult">
+            <summary>
+            Decoding result.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.DecodeResult.Text">
+            <summary>
+            Textual representation of the result content.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.DecodeResult.Data">
+            <summary>
+            Raw result data.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.DecodeResult.Format">
+            <summary>
+            Raw result data type.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.DecodeResult.InterestPoints">
+            <summary>
+            Interest points in the decoded frame.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.IDecoder">
+            <summary>
+            Frame decoder implementation interface.
+            
+            Decoders attempt to find optically encoded information (for example 1D and
+            2D barcodes, QR codes, data matrices) from frames.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.IDecoder.DecodeAsync(OpticalReaderLib.Frame)">
+            <summary>
+            Attempts to decode an optically encoded code from the frame.
+            </summary>
+            <param name="frame">Frame to decode.</param>
+            <returns>Decoding result or null if no code was found.</returns>
+        </member>
+        <member name="T:OpticalReaderLib.EnhanceResult">
+            <summary>
+            Enhancing result.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.EnhanceResult.Frame">
+            <summary>
+            Enhanced frame.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.Internal.OpticalReaderPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.OpticalReaderResult">
+            <summary>
+            Optical reader task result event arguments.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderResult.Text">
+            <summary>
+            Textual representation of the result content.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderResult.Data">
+            <summary>
+            Raw result data.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderResult.Format">
+            <summary>
+            Raw result data type.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderResult.Thumbnail">
+            <summary>
+            Thumbnail preview of the detected optical code.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.OpticalReaderTask">
+            <summary>
+            Optical reader task is a Windows Phone chooser task implementation that allows
+            easy and quick integration of 1D and 2D optical code reading functionality.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.OpticalReaderTask.Show">
+            <summary>
+            Show the optical reader viewfinder.
+            
+            Application is navigated to a optical reader viewfinder page and the Completed
+            event is fired when user either navigates away from the viewfinder or if an
+            optical code is detected.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderTask.Processor">
+            <summary>
+            Processor to use for processing the frames.
+            
+            Zxing processor is used if no processor is set explicitly.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderTask.ObjectSize">
+            <summary>
+            Target object real-life millimeter size. This affects the zoom factor
+            used in the reader viewfinder.
+            
+            Default is no zoom.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderTask.FocusInterval">
+            <summary>
+            Reader camera focus interval, meaning the time that needs to pass without
+            the reader finding anything before it attempts to re-focus the lense.
+            
+            Default is 2500 milliseconds.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderTask.ShowDebugInformation">
+            <summary>
+            Set to true to see debug frames in the reader viewfinder. Default is false,
+            meaning that debug frames are not displayed.
+            
+            Debug frames are meant to be used while developing normalizers,
+            enhancers and processor, in order to get visual feedback on how the frame
+            is modified during processing.
+            
+            Debug frames are not meant to be displayed in final consumer applications.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.OpticalReaderTask.RequireConfirmation">
+            <summary>
+            Set to true to require the user to confirm a found result by tapping on a
+            result preview. If false, the first result found will be used automatically.
+            
+            Default is false.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.Utilities.GetSuggestedParameters(Windows.Foundation.Size,System.Double,Windows.Foundation.Size,Windows.Foundation.Size)">
+            <summary>
+            Gets suggested camera parameters from the given information.
+            </summary>
+            <param name="sensorResolution">Camera sensor resolution in pixels.</param>
+            <param name="sensorRotation">Camera sensor orientation to the screen.</param>
+            <param name="objectSize">Real-life object size in millimeters.</param>
+            <param name="length">Preferred object width or height in pixels.</param>
+            <returns>Suggested camera parameters.</returns>
+        </member>
+        <member name="M:OpticalReaderLib.Utilities.RenderPreviewAsync(OpticalReaderLib.Frame,Windows.Foundation.Size)">
+            <summary>
+            Renders a writeable bitmap preview of the given frame.
+            </summary>
+            <param name="frame">Frame to render.</param>
+            <param name="size">Preview size in pixels.</param>
+            <returns>Rendered frame preview.</returns>
+        </member>
+        <member name="T:OpticalReaderLib.NormalizeResult">
+            <summary>
+            Normalization result.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.NormalizeResult.Frame">
+            <summary>
+            Normalized frame.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.NormalizeResult.Translate">
+            <summary>
+            Function to translate points from the normalized frame to the original frame.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.ProcessResult">
+            <summary>
+            Processing result.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ProcessResult.Text">
+            <summary>
+            Textual representation of the result content.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ProcessResult.Data">
+            <summary>
+            Raw result data.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ProcessResult.Format">
+            <summary>
+            Raw result data type.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ProcessResult.InterestPoints">
+            <summary>
+            Interest points in the original frame.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.IProcessor">
+            <summary>
+            Frame processor implementation interface.
+            
+            Processors are all-in-one frame decoding systems. Depending on the implementation,
+            they may use normalizers, enhancers and decoders to help in the job.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.IProcessor.ProcessAsync(OpticalReaderLib.Frame,Windows.Foundation.Rect,System.Double)">
+            <summary>
+            Attempts to decode an optically encoded code from the frame by processing it.
+            </summary>
+            <param name="frame">Frame to process.</param>
+            <param name="area">Interesting frame area.</param>
+            <param name="rotation">Frame rotation, how many degrees it should be rotated clockwise.</param>
+            <returns>Processing result or null if no code was found.</returns>
+        </member>
+        <member name="E:OpticalReaderLib.IProcessor.DebugFrameAvailable">
+            <summary>
+            Fired when there is a debugging frame available.
+            
+            Debug frames are meant to be used while developing normalizers,
+            enhancers and processor, in order to get visual feedback on how the frame
+            is modified during processing.
+            
+            Debug frames are not meant to be displayed in final consumer applications.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.DebugFrameEventArgs">
+            <summary>
+            Debug frame available event arguments.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.DebugFrameEventArgs.DebugFrame">
+            <summary>
+            Debug frame.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.ParameterSuggestion">
+            <summary>
+            Camera parameter suggestion.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ParameterSuggestion.IsAccurate">
+            <summary>
+            True if parameters are accurate, meaning that there was data
+            to back up the decision on the parameters, otherwise false.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ParameterSuggestion.Zoom">
+            <summary>
+            Suggested viewfinder zoom factor. Zoom factor of one means that
+            the viewfinder should not be zoomed at all and it should show
+            the camera preview in whole as it is got from the camera.
+            </summary>
+        </member>
+        <member name="P:OpticalReaderLib.ParameterSuggestion.Distance">
+            <summary>
+            Optimal reading distance, how close the camera should be to the
+            real-life target object. This may be used to guide the application
+            user to position the device on an optical reading distance.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.BasicProcessor">
+            <summary>
+            Basic generic abstract processor implementation. Requires a decoder.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.ZxingDecoder">
+            <summary>
+            Decoder implementation that utilizes the ZXing library.
+            </summary>
+        </member>
+        <member name="T:OpticalReaderLib.ZxingProcessor">
+            <summary>
+            Processor implementation that utilizes the ZXing decoder.
+            </summary>
+        </member>
+        <member name="M:OpticalReaderLib.Internal.Utilities.CalculateZoom(Windows.Foundation.Size,System.Double,System.Double,Windows.Foundation.Size,Windows.Foundation.Size,System.Double,Windows.Foundation.Size)">
+            <summary>
+            Calculates optimal digital zoom from the given parameters.
+            </summary>
+            <param name="sensorSize">Size of the camera sensor in millimeters</param>
+            <param name="sensorRotation">Camera sensor orientation to the screen</param>
+            <param name="focalLength35">35 millimeter equivalent focal length of the camera lense</param>
+            <param name="resolution">Camera sensor resolution in pixels</param>
+            <param name="objectSize">Real-life object size in millimeters</param>
+            <param name="distance">Camera sensor distance to the object in millimeters</param>
+            <param name="objectResolution">Preferred object size on sensor in pixels</param>
+            <returns>Digital zoom that makes the object in question appear so that it fits in objectResolution pixels on the sensor</returns>
+        </member>
+    </members>
+</doc>

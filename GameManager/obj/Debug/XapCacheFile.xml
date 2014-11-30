@@ -1,0 +1,13 @@
+﻿<xapCache source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Bin\Debug\GameManager_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="10/31/2014 8:17:33 PM">
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\obj\Debug\GameManager.dll" archivePath="GameManager.dll" lastWriteTime="10/31/2014 8:17:32 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Images\Megaman_nes_pal.jpg" archivePath="Images\Megaman_nes_pal.jpg" lastWriteTime="10/31/2014 6:04:11 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="10/31/2014 7:02:15 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="10/31/2014 4:31:54 PM" />
+  <file source="c:\users\lavontae\documents\visual studio 2012\Projects\GameManager\GameManager\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="10/31/2014 7:02:15 PM" />
+</xapCache>

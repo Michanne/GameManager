@@ -1,0 +1,18 @@
+﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="GameManager" EntryPointType="GameManager.App" RuntimeVersion="4.7.50308.0">
+  <Deployment.Parts>
+    <AssemblyPart x:Name="GameManager" Source="GameManager.dll" />
+    <AssemblyPart x:Name="Microsoft.Advertising.Mobile.Common" Source="Microsoft.Advertising.Mobile.Common.dll" />
+    <AssemblyPart x:Name="Microsoft.Advertising.Mobile" Source="Microsoft.Advertising.Mobile.dll" />
+    <AssemblyPart x:Name="Microsoft.Advertising.Mobile.UI" Source="Microsoft.Advertising.Mobile.UI.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="Nokia.Graphics.Imaging.Managed" Source="Nokia.Graphics.Imaging.Managed.dll" />
+    <AssemblyPart x:Name="OpticalReaderLib" Source="OpticalReaderLib.dll" />
+    <AssemblyPart x:Name="System.Net.Http" Source="System.Net.Http.dll" />
+    <AssemblyPart x:Name="System.Net.Http.Extensions" Source="System.Net.Http.Extensions.dll" />
+    <AssemblyPart x:Name="System.Net.Http.Primitives" Source="System.Net.Http.Primitives.dll" />
+    <AssemblyPart x:Name="zxing.wp8.0" Source="zxing.wp8.0.dll" />
+    <AssemblyPart x:Name="Nokia.Graphics.Imaging" Source="Nokia.Graphics.Imaging.dll" />
+    <AssemblyPart x:Name="Nokia.InteropServices.WindowsRuntime" Source="Nokia.InteropServices.WindowsRuntime.dll" />
+  </Deployment.Parts>
+</Deployment>

@@ -1,0 +1,36 @@
+﻿<vm:GameModel
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:vm="clr-namespace:GameManager.ViewModels">
+    
+    <vm:GameModel.MainGameView>
+        <vm:GameView>
+            <vm:GameView.GamesList>
+                <vm:GameData GameTitle="Megaman" 
+                             GameReleaseDate="9/10/12"
+                             GameSerial="9477503664"
+                             GameSummary="A blue robot saves the world"
+                             />
+                <vm:GameData GameTitle="Pokemon Red"
+                             GameReleaseDate="10/10/11"
+                             GameSerial="01838944837"
+                             GameSummary="A boy(or girl) catches monsters!"
+                             />
+            </vm:GameView.GamesList>
+        </vm:GameView>
+    </vm:GameModel.MainGameView>
+    
+    <vm:GameModel.SearchView>
+        <vm:GameView>
+            <vm:GameView.GamesList>
+                <vm:GameData GameTitle="Shaun White"
+                             GameReleaseDate="9/10/12"
+                             GameCover="/Images/Megaman_nes_pal.jpg"
+                             GameConsole="Playstation 3"
+                             />
+            </vm:GameView.GamesList>
+        </vm:GameView>
+    </vm:GameModel.SearchView>
+    
+    
+</vm:GameModel>

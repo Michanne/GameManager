@@ -1,0 +1,168 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="GameManager.GamesViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    d:DataContext="{d:DesignData SampleData/SampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    >
+    
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Name="ListTemplate">
+            <Grid 
+                            Margin="0,-6,0,12">
+                <Image Source="{Binding GameCover99Image}"
+                                   CacheMode="BitmapCache"
+                                   Height="99" 
+                                   Width="99"
+                                   HorizontalAlignment="Left"
+                                   Unloaded="Image_Unloaded_1"
+                                   Loaded="Image_Loaded_1"
+                                   />
+                <TextBlock Text="{Binding GameTitle}" 
+                                           TextWrapping="NoWrap"
+                                           HorizontalAlignment="Left"
+                                           Margin="105,0,0,0"
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                                       />
+                <TextBlock
+                                Text="{Binding GameConsole}"
+                                VerticalAlignment="Bottom"
+                                Margin="105, 0, 0, 0"
+                                FontSize="{StaticResource PhoneFontSizeMedium}"
+                                />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="GridTemplate">
+                <StackPanel x:Name="StackPanel1" Orientation="Vertical" VerticalAlignment="Top">
+                    <StackPanel x:Name="StackPanel2" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                            <Image Source="{Binding GameCover200Image}"
+                                   CacheMode="BitmapCache"
+                                   Height="200" 
+                                   Width="200"
+                                   HorizontalAlignment="Left"
+                                   Unloaded="Image_Unloaded_1"
+                                   Loaded="Image_Loaded_1"
+                                   Grid.Row="1"
+                                   />
+                            <TextBlock Text="{Binding GameTitle}" 
+                                       TextWrapping="NoWrap"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                       FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                                       />
+                            <TextBlock Text="{Binding GameConsole}"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="{StaticResource PhoneFontSizeMedium}"
+                                       Grid.Row="2"
+                                />
+                            <TextBlock Text="{Binding GameReleaseDate}"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="{StaticResource PhoneFontSizeMedium}"
+                                       Grid.Row="3"
+                                       />
+                    </Grid>
+                    </StackPanel>
+                </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Name="PanoramaHeaderTemplate">
+            <TextBlock Text=""/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--Page transition effects-->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Height="100" 
+                   Width="{Binding ElementName=LayoutRoot, Path=Width}"
+                   VerticalAlignment="Top"
+                   >
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <Grid Grid.Row="0">
+            <TextBlock Text="{Binding Path=LocalizedResources.Games, 
+                                        Source={StaticResource LocalizedStrings}}" 
+                       Style="{StaticResource PhoneTextTitle1Style}"
+                       Foreground="White"/>
+
+            <Button HorizontalAlignment="Right"
+                    Click="Button_Click_1"
+                    Foreground="White"
+                    BorderBrush="White">
+                <Image  x:Name="viewButton"  
+                        Source="/Images/gotoslide.png" 
+                        Height= "50"
+                        />
+                </Button>
+            
+            <Button HorizontalAlignment="Right"
+                    Margin="0,0,100,0"
+                    Click="Button_Click_2"
+                    Foreground="White"
+                    BorderBrush="White"
+                    >
+                <Image Source="/Images/addtag.png"
+                       Height="50"
+                       />
+            </Button>
+        </Grid>
+
+        <!--ContentPanel - place additional content here-->
+        
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,20,12,0">
+            <ContentPresenter x:Name="Presenter" />
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
